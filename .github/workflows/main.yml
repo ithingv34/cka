@@ -1,0 +1,29 @@
+name: VuePress Page build & deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: Install and Build
+        run: |
+          cd docs && yarn && yarn run build
+
+      - name: Deploy build files to gh-pages branch
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        run: |
+          cd docs/.vuepress/dist
+          git config --global user.email "ithingv34@gmail.com"
+          git config --global user.name "${GITHUB_ACTOR}"
+          git init
+          git add -A
+          git commit -m "vuepress page deployed $GITHUB_SHA"
+          git push -f https://${ACCESS_TOKEN}@github.com/${GITHUB_REPOSITORY}.git master:gh-pages
