@@ -1,0 +1,24 @@
+{
+  "name": "vuepress_template",
+  "version": "1.0.0",
+  "description": "vuepress 기본 템플릿입니다.",
+  "main": "index.js",
+  "scripts": {
+    "build": "vuepress build",
+    "dev": "vuepress dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ithingv34/vuepress_template.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ithingv34/vuepress_template/issues"
+  },
+  "homepage": "https://github.com/ithingv34/vuepress_template#readme",
+  "devDependencies": {
+    "vuepress": "^1.4.1"
+  }
+}
