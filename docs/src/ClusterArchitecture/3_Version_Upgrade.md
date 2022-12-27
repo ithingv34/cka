@@ -15,6 +15,9 @@
 
 :::
 
+---
+**Master 노드 업그레이드**
+
 1. 먼저 Control Plane 노드에 `ssh`로 접속해야한다. 
    - 여러개의 Control Plane 중에서 `kubeconfig` 파일 (`/etc/kubernetes/admin.conf`)을 가지고 있는 Control Plane을 선택한다.
 
@@ -194,3 +197,103 @@ logout
 
 **Worker 노드 업그레이드**
 
+1. Worker 노드 중 하나를 선택하고 ssh로 접속한다.
+   
+```shell
+$ ssh kube-worker-1
+Welcome to Ubuntu 18.04.5 LTS (GNU/Linux 4.15.0-132-generic x86_64)
+...
+```
+
+2. `kubeadm` target 버전으로 업그레이드 한다. 
+    - master node에서 했던 것과 동일한 명령이다.
+```
+$ sudo apt-mark unhold kubeadm && sudo apt-get update && sudo apt-get install \
+  -y kubeadm=1.19.0-00 && sudo apt-mark hold kubeadm
+
+Canceled hold on kubeadm.
+...
+Unpacking kubeadm (1.19.0-00) over (1.18.0-00) ...
+Setting up kubeadm (1.19.0-00) ...
+kubeadm set on hold.
+$ kubeadm version
+kubeadm version: &version.Info{Major:"1", Minor:"19", GitVersion:"v1.19.0", \
+GitCommit:"e19964183377d0ec2052d1f1fa930c4d7575bd50", GitTreeState:"clean", \
+BuildDate:"2022-12-27T14:28:32Z", GoVersion:"go1.15", Compiler:"gc", \
+Platform:"linux/amd64"}
+```
+
+3. kubelet configuration을 업그레이드한다.
+```shell
+$ sudo kubeadm upgrade node
+
+[upgrade] Reading configuration from the cluster...
+[upgrade] FYI: You can look at this config file with 'kubectl -n kube-system \
+get cm kubeadm-config -o yaml'
+[preflight] Running pre-flight checks
+[preflight] Skipping prepull. Not a control plane node.
+[upgrade] Skipping phase. Not a control plane node.
+[kubelet-start] Writing kubelet configuration to file \
+"/var/lib/kubelet/config.yaml"
+[upgrade] The configuration for this node was successfully updated!
+[upgrade] Now you should go ahead and upgrade the kubelet package using your \
+package manager.
+
+```
+
+4. 업그레이드할 노드를 drain한다.
+```shell
+$ kubectl drain kube-worker-1 --ignore-daemonsets
+
+node/kube-worker-1 cordoned
+WARNING: ignoring DaemonSet-managed Pods: kube-system/calico-node-2hrxg, \
+kube-system/kube-proxy-qf6nl
+evicting pod kube-system/calico-kube-controllers-65f8bc95db-kggbr
+evicting pod kube-system/coredns-f9fd979d6-7zm4q
+evicting pod kube-system/coredns-f9fd979d6-tlmhq
+pod/calico-kube-controllers-65f8bc95db-kggbr evicted
+pod/coredns-f9fd979d6-7zm4q evicted
+pod/coredns-f9fd979d6-tlmhq evicted
+node/kube-worker-1 evicted
+```
+
+5. kubelet과 kubectl을 업그레이드한다.
+
+```shell
+$ sudo apt-mark unhold kubelet kubectl && sudo apt-get update && sudo apt-get \
+install -y kubelet=1.19.0-00 kubectl=1.19.0-00 && sudo apt-mark hold kubelet \
+kubectl
+
+...
+Setting up kubelet (1.19.0-00) ...
+Setting up kubectl (1.19.0-00) ...
+kubelet set on hold.
+kubectl set on hold.
+```
+
+6. kubelet 프로세스를 재시작한다.
+```shell
+$ sudo systemctl daemon-reload
+$ sudo systemctl restart kubelet
+```
+
+7. 노드를 uncordon한다.
+```shell
+$ kubectl uncordon kube-worker-1
+node/kube-worker-1 uncordoned
+```
+
+8. 새로운 버전인 1.19.0가 노드에도 적용됐는지 확인한다.
+```shell
+$ kubectl get nodes
+NAME                 STATUS   ROLES    AGE   VERSION
+kube-control-plane   Ready    master   24h   v1.19.0
+kube-worker-1        Ready    <none>   24h   v1.19.0
+```
+
+9. 로그아웃
+```shell
+$ exit
+logout
+...
+```
