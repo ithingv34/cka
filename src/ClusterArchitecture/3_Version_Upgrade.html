@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>클러스터 버전 업그레이드 |  Certified Kubernetes Administrator (CKA)</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/devops_stack/assets/css/0.styles.c4bf43de.css" as="style"><link rel="preload" href="/devops_stack/assets/js/app.edb6ec7a.js" as="script"><link rel="preload" href="/devops_stack/assets/js/2.d7118089.js" as="script"><link rel="preload" href="/devops_stack/assets/js/11.901b1318.js" as="script"><link rel="prefetch" href="/devops_stack/assets/js/10.6ef1ed52.js"><link rel="prefetch" href="/devops_stack/assets/js/12.40f20e7b.js"><link rel="prefetch" href="/devops_stack/assets/js/13.c5675a20.js"><link rel="prefetch" href="/devops_stack/assets/js/14.fc4b9492.js"><link rel="prefetch" href="/devops_stack/assets/js/15.7274da97.js"><link rel="prefetch" href="/devops_stack/assets/js/16.ba253dca.js"><link rel="prefetch" href="/devops_stack/assets/js/17.8d7173ed.js"><link rel="prefetch" href="/devops_stack/assets/js/18.444f652b.js"><link rel="prefetch" href="/devops_stack/assets/js/19.5c40776e.js"><link rel="prefetch" href="/devops_stack/assets/js/20.971c14df.js"><link rel="prefetch" href="/devops_stack/assets/js/21.2f108077.js"><link rel="prefetch" href="/devops_stack/assets/js/22.df4926d3.js"><link rel="prefetch" href="/devops_stack/assets/js/23.06677d3c.js"><link rel="prefetch" href="/devops_stack/assets/js/24.8ce7d6e5.js"><link rel="prefetch" href="/devops_stack/assets/js/25.c6342015.js"><link rel="prefetch" href="/devops_stack/assets/js/26.3e22c156.js"><link rel="prefetch" href="/devops_stack/assets/js/27.304176ff.js"><link rel="prefetch" href="/devops_stack/assets/js/28.12ba7b33.js"><link rel="prefetch" href="/devops_stack/assets/js/29.61b2a492.js"><link rel="prefetch" href="/devops_stack/assets/js/3.cd70506a.js"><link rel="prefetch" href="/devops_stack/assets/js/30.af9f12b0.js"><link rel="prefetch" href="/devops_stack/assets/js/4.4d035bb6.js"><link rel="prefetch" href="/devops_stack/assets/js/5.ea5a5e54.js"><link rel="prefetch" href="/devops_stack/assets/js/6.44607573.js"><link rel="prefetch" href="/devops_stack/assets/js/7.8923e0a1.js"><link rel="prefetch" href="/devops_stack/assets/js/8.d7d30e29.js"><link rel="prefetch" href="/devops_stack/assets/js/9.021f254a.js">
+    <link rel="stylesheet" href="/devops_stack/assets/css/0.styles.c4bf43de.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/devops_stack/" class="home-link router-link-active"><!----> <span class="site-name"> Certified Kubernetes Administrator (CKA)</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/devops_stack/" class="nav-link">
+  Home
+</a></div> <a href="https://github.com/ithingv34/devops_stack" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/devops_stack/" class="nav-link">
+  Home
+</a></div> <a href="https://github.com/ithingv34/devops_stack" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/devops_stack/" aria-current="page" class="sidebar-link">Certified Kubernetes Administrator (CKA)</a></li><li><section class="sidebar-group collapsable depth-0"><a href="/devops_stack/src/CKA/" class="sidebar-heading clickable"><span>CKA</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/devops_stack/src/ClusterArchitecture/" class="sidebar-heading clickable router-link-active open"><span>ClusterArchitecture</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/devops_stack/src/ClusterArchitecture/" aria-current="page" class="sidebar-link">클러스터 아키텍처, 설치 및 구성 [25%]</a></li><li><a href="/devops_stack/src/ClusterArchitecture/1_RBAC.html" class="sidebar-link">역할 기반 액세스 제어 (RBAC)</a></li><li><a href="/devops_stack/src/ClusterArchitecture/2_Cluster_Installation.html" class="sidebar-link">클러스터 설치</a></li><li><a href="/devops_stack/src/ClusterArchitecture/3_Version_Upgrade.html" aria-current="page" class="active sidebar-link">클러스터 버전 업그레이드</a></li><li><a href="/devops_stack/src/ClusterArchitecture/4_Etcd_backup_Restoring.html" class="sidebar-link">etcd DB 백업 및 복원</a></li><li><a href="/devops_stack/src/ClusterArchitecture/5_Cluster_HA.html" class="sidebar-link">클러스터 고가용성(HA) 관리</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/devops_stack/src/Workloads Scheduling/" class="sidebar-heading clickable"><span>Workloads Scheduling</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/devops_stack/src/Services Networking/" class="sidebar-heading clickable"><span>Services Networking</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/devops_stack/src/Storage/" class="sidebar-heading clickable"><span>Storage</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/devops_stack/src/TroubleShooting/" class="sidebar-heading clickable"><span>TroubleShooting</span> <span class="arrow right"></span></a> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="클러스터-버전-업그레이드"><a href="#클러스터-버전-업그레이드" class="header-anchor">#</a> 클러스터 버전 업그레이드</h1> <p>기존 클러스터의 버그 수정 및 새로운 기능 추가를 위하여 클러스터 버전을 업그레이드 할 수 있다.</p> <div class="custom-block danger"><p class="custom-block-title">WARNING</p> <p><strong>업그레이드는</strong> 현재 실행 중인 워크로드의 중단을 피하고 클러스터 노드의 손상을 막기 위해 통제된 방식으로 수행되어야 한다.</p></div> <p><strong>업그레이드 과정</strong></p> <img src="/devops_stack/assets/img/1-10.769a1f85.png"> <div class="custom-block warning"><p class="custom-block-title">WARNING</p> <p>고가용성을 위해 여러 개의 클러스터를 사용하는 경우 한 번에 하나씩 Control Plane 노드를 업그레이드 해야 한다.</p></div> <hr> <p><strong>Master 노드 업그레이드</strong></p> <ol><li>먼저 Control Plane 노드에 <code>ssh</code>로 접속해야한다.
+<ul><li>여러개의 Control Plane 중에서 <code>kubeconfig</code> 파일 (<code>/etc/kubernetes/admin.conf</code>)을 가지고 있는 Control Plane을 선택한다.</li></ul></li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code>$ <span class="token function">ssh</span> kube-control-plane
+Welcome to Ubuntu <span class="token number">18.04</span>.5 LTS <span class="token punctuation">(</span>GNU/Linux <span class="token number">4.15</span>.0-132-generic x86_64<span class="token punctuation">)</span>
+<span class="token punctuation">..</span>.
+
+</code></pre></div><ol start="2"><li>쿠버네티스 버전을 확인한다.
+<ul><li>현재 버전은 1.18.0</li> <li>이번 예제에서는 단일 클러스터, 단일 워커 노드로 업그레이드를 진행한다.</li></ul></li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code>$ kubectl get nodes
+NAME                 STATUS   ROLES    AGE     VERSION
+kube-control-plane   Ready    master   4m54s   v1.18.0
+kube-worker-1        Ready    <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>   3m18s   v1.18.0
+</code></pre></div><ol start="3"><li><code>kubeadm</code> 버전을 업그레이드
+<ul><li>target 버전은 1.19.0-00</li></ul></li></ol> <div class="language- extra-class"><pre class="language-text"><code># 설치 가능한 패키지 리스트를 최신화
+$ sudo apt update
+# 업그레이드할 버전을 확인
+$ sudo apt-cache madison kubeadm
+    kubeadm |  1.21.2-00 | http://apt.kubernetes.io kubernetes-xenial/main \
+   amd64 Packages
+   kubeadm |  1.21.1-00 | http://apt.kubernetes.io kubernetes-xenial/main \
+   amd64 Packages
+   kubeadm |  1.21.0-00 | http://apt.kubernetes.io kubernetes-xenial/main \
+   amd64 Packages
+   kubeadm |  1.20.8-00 | http://apt.kubernetes.io kubernetes-xenial/main \
+   amd64 Packages
+   kubeadm |  1.20.7-00 | http://apt.kubernetes.io kubernetes-xenial/main \
+   amd64 Packages
+   kubeadm |  1.20.6-00 | http://apt.kubernetes.io kubernetes-xenial/main \
+   amd64 Packages
+   kubeadm |  1.20.5-00 | http://apt.kubernetes.io kubernetes-xenial/main \
+   amd64 Packages
+   kubeadm |  1.20.4-00 | http://apt.kubernetes.io kubernetes-xenial/main \
+   amd64 Packages
+   kubeadm |  1.20.2-00 | http://apt.kubernetes.io kubernetes-xenial/main \
+   amd64 Packages
+   kubeadm |  1.20.1-00 | http://apt.kubernetes.io kubernetes-xenial/main \
+   amd64 Packages
+   kubeadm |  1.20.0-00 | http://apt.kubernetes.io kubernetes-xenial/main \
+   amd64 Packages
+</code></pre></div><ol start="4"><li><code>kubeadm</code>을 1.19.0-00 버전으로 업그레이드</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code>$ <span class="token function">sudo</span> apt-mark unhold kubeadm <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token function">apt-get</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> <span class="token punctuation">\</span>
+  -y <span class="token assign-left variable">kubeadm</span><span class="token operator">=</span><span class="token number">1.19</span>.0-00 <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> apt-mark hold kubeadm
+
+Canceled hold on kubeadm.
+<span class="token punctuation">..</span>.
+Unpacking kubeadm <span class="token punctuation">(</span><span class="token number">1.19</span>.0-00<span class="token punctuation">)</span> over <span class="token punctuation">(</span><span class="token number">1.18</span>.0-00<span class="token punctuation">)</span> <span class="token punctuation">..</span>.
+Setting up kubeadm <span class="token punctuation">(</span><span class="token number">1.19</span>.0-00<span class="token punctuation">)</span> 
+<span class="token punctuation">..</span>.
+kubeadm <span class="token builtin class-name">set</span> on hold.
+
+$ <span class="token function">sudo</span> <span class="token function">apt-get</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> -y --allow-change-held-packages <span class="token punctuation">\</span>
+  <span class="token assign-left variable">kubeadm</span><span class="token operator">=</span><span class="token number">1.19</span>.0-00
+<span class="token punctuation">..</span>.
+kubeadm is already the newest version <span class="token punctuation">(</span><span class="token number">1.19</span>.0-00<span class="token punctuation">)</span>.
+<span class="token number">0</span> upgraded, <span class="token number">0</span> newly installed, <span class="token number">0</span> to remove and <span class="token number">7</span> not upgraded.
+$ kubeadm version
+kubeadm version: <span class="token operator">&amp;</span>version.Info<span class="token punctuation">{</span>Major:<span class="token string">&quot;1&quot;</span>, Minor:<span class="token string">&quot;19&quot;</span>, GitVersion:<span class="token string">&quot;v1.19.0&quot;</span>, <span class="token punctuation">\</span>
+GitCommit:<span class="token string">&quot;e19964183377d0ec2052d1f1fa930c4d7575bd50&quot;</span>, GitTreeState:<span class="token string">&quot;clean&quot;</span>, <span class="token punctuation">\</span>
+BuildDate:<span class="token string">&quot;2022-12-27T14:28:32Z&quot;</span>, GoVersion:<span class="token string">&quot;go1.15&quot;</span>, Compiler:<span class="token string">&quot;gc&quot;</span>, <span class="token punctuation">\</span>
+Platform:<span class="token string">&quot;linux/amd64&quot;</span><span class="token punctuation">}</span>
+
+</code></pre></div><ol start="5"><li>현재 클러스터를 업그레이드 할 수 있는지 버전을 확인한다.
+<ul><li>현재 버전: 1.18.20</li> <li>kubeadm 버전: 1.19.0</li> <li>1.19.12로 업그레이드가 가능하다.</li></ul></li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code>$ <span class="token function">sudo</span> kubeadm upgrade plan
+
+<span class="token punctuation">..</span>.
+<span class="token punctuation">[</span>upgrade<span class="token punctuation">]</span> Fetching available versions to upgrade to
+<span class="token punctuation">[</span>upgrade/versions<span class="token punctuation">]</span> Cluster version: v1.18.20
+<span class="token punctuation">[</span>upgrade/versions<span class="token punctuation">]</span> kubeadm version: v1.19.0
+I0708 <span class="token number">17</span>:32:53.037895   <span class="token number">17430</span> version.go:252<span class="token punctuation">]</span> remote version is much newer: <span class="token punctuation">\</span>
+v1.21.2<span class="token punctuation">;</span> falling back to: stable-1.19
+<span class="token punctuation">[</span>upgrade/versions<span class="token punctuation">]</span> Latest stable version: v1.19.12
+<span class="token punctuation">[</span>upgrade/versions<span class="token punctuation">]</span> Latest version <span class="token keyword">in</span> the v1.18 series: v1.18.20
+<span class="token punctuation">..</span>.
+You can now apply the upgrade by executing the following command:
+
+	kubeadm upgrade apply v1.19.12
+
+Note: Before you can perform this upgrade, you have to update kubeadm to v1.19.12.
+</code></pre></div><ol start="6"><li>1.19.0으로 업그레이드 적용
+<ul><li>시간이 몇 분 걸릴 수 있다.</li> <li>CNI 플러그인도 업그레이드가 필요할 수 있다.</li></ul></li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code>$ <span class="token function">sudo</span> kubeadm upgrade apply v1.19.0
+<span class="token punctuation">..</span>.
+<span class="token punctuation">[</span>upgrade/version<span class="token punctuation">]</span> You have chosen to change the cluster version to <span class="token string">&quot;v1.19.0&quot;</span>
+<span class="token punctuation">[</span>upgrade/versions<span class="token punctuation">]</span> Cluster version: v1.18.20
+<span class="token punctuation">[</span>upgrade/versions<span class="token punctuation">]</span> kubeadm version: v1.19.0
+<span class="token punctuation">..</span>.
+<span class="token punctuation">[</span>upgrade/successful<span class="token punctuation">]</span> SUCCESS<span class="token operator">!</span> Your cluster was upgraded to <span class="token string">&quot;v1.19.0&quot;</span><span class="token builtin class-name">.</span> Enjoy<span class="token operator">!</span>
+
+<span class="token punctuation">[</span>upgrade/kubelet<span class="token punctuation">]</span> Now that your control plane is upgraded, please proceed <span class="token punctuation">\</span>
+with upgrading your kubelets <span class="token keyword">if</span> you haven't already <span class="token keyword">done</span> so.
+
+</code></pre></div><ol start="7"><li>ControlPlane 노드를 <code>Drain</code>해서 워크로드를 제거한다. <code>uncordoned</code> 될 때 까지 워크로드가 스케줄링 되지 않는다.</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code>$ kubectl drain kube-control-plane --ignore-daemonsets
+node/kube-control-plane cordoned
+WARNING: ignoring DaemonSet-managed Pods: kube-system/calico-node-qndb9, <span class="token punctuation">\</span>
+kube-system/kube-proxy-vpvms
+evicting pod kube-system/calico-kube-controllers-65f8bc95db-krp72
+evicting pod kube-system/coredns-f9fd979d6-2brkq
+pod/calico-kube-controllers-65f8bc95db-krp72 evicted
+pod/coredns-f9fd979d6-2brkq evicted
+node/kube-control-plane evicted
+</code></pre></div><ol start="8"><li>kubelet과 kubectl을 동일한 버전으로 업그레이드</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code>$ <span class="token function">sudo</span> apt-mark unhold kubelet kubectl <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token function">apt-get</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token punctuation">\</span>
+  <span class="token function">apt-get</span> <span class="token function">install</span> -y <span class="token assign-left variable">kubelet</span><span class="token operator">=</span><span class="token number">1.19</span>.0-00 <span class="token assign-left variable">kubectl</span><span class="token operator">=</span><span class="token number">1.19</span>.0-00 <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> apt-mark <span class="token punctuation">\</span>
+  hold kubelet kubectl
+<span class="token punctuation">..</span>.
+Setting up kubelet <span class="token punctuation">(</span><span class="token number">1.19</span>.0-00<span class="token punctuation">)</span> <span class="token punctuation">..</span>.
+Setting up kubectl <span class="token punctuation">(</span><span class="token number">1.19</span>.0-00<span class="token punctuation">)</span> <span class="token punctuation">..</span>.
+kubelet <span class="token builtin class-name">set</span> on hold.
+kubectl <span class="token builtin class-name">set</span> on hold.
+</code></pre></div><ol start="9"><li>kubelet 프로세스를 재시작</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code>$ <span class="token function">sudo</span> systemctl daemon-reload
+$ <span class="token function">sudo</span> systemctl restart kubelet
+</code></pre></div><ol start="10"><li>Drain 됐던 control plane을 uncordon 한다.</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code>$ kubectl uncordon kube-control-plane
+node/kube-control-plane uncordoned
+</code></pre></div><ol start="11"><li>Control Plane 노드 버전 확인</li></ol> <div class="language- extra-class"><pre class="language-text"><code>$ kubectl get nodes
+NAME                 STATUS   ROLES    AGE   VERSION
+kube-control-plane   Ready    master   21h   v1.19.0
+kube-worker-1        Ready    &lt;none&gt;   21h   v1.18.0
+</code></pre></div><ol start="12"><li>로그아웃</li></ol> <div class="language- extra-class"><pre class="language-text"><code>$ exit
+logout
+</code></pre></div><hr> <p><strong>Worker 노드 업그레이드</strong></p> <ol><li>Worker 노드 중 하나를 선택하고 ssh로 접속한다.</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code>$ <span class="token function">ssh</span> kube-worker-1
+Welcome to Ubuntu <span class="token number">18.04</span>.5 LTS <span class="token punctuation">(</span>GNU/Linux <span class="token number">4.15</span>.0-132-generic x86_64<span class="token punctuation">)</span>
+<span class="token punctuation">..</span>.
+</code></pre></div><ol start="2"><li><code>kubeadm</code> target 버전으로 업그레이드 한다.
+<ul><li>master node에서 했던 것과 동일한 명령이다.</li></ul></li></ol> <div class="language- extra-class"><pre class="language-text"><code>$ sudo apt-mark unhold kubeadm &amp;&amp; sudo apt-get update &amp;&amp; sudo apt-get install \
+  -y kubeadm=1.19.0-00 &amp;&amp; sudo apt-mark hold kubeadm
+
+Canceled hold on kubeadm.
+...
+Unpacking kubeadm (1.19.0-00) over (1.18.0-00) ...
+Setting up kubeadm (1.19.0-00) ...
+kubeadm set on hold.
+$ kubeadm version
+kubeadm version: &amp;version.Info{Major:&quot;1&quot;, Minor:&quot;19&quot;, GitVersion:&quot;v1.19.0&quot;, \
+GitCommit:&quot;e19964183377d0ec2052d1f1fa930c4d7575bd50&quot;, GitTreeState:&quot;clean&quot;, \
+BuildDate:&quot;2022-12-27T14:28:32Z&quot;, GoVersion:&quot;go1.15&quot;, Compiler:&quot;gc&quot;, \
+Platform:&quot;linux/amd64&quot;}
+</code></pre></div><ol start="3"><li>kubelet configuration을 업그레이드한다.</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code>$ <span class="token function">sudo</span> kubeadm upgrade <span class="token function">node</span>
+
+<span class="token punctuation">[</span>upgrade<span class="token punctuation">]</span> Reading configuration from the cluster<span class="token punctuation">..</span>.
+<span class="token punctuation">[</span>upgrade<span class="token punctuation">]</span> FYI: You can <span class="token function">look</span> at this config <span class="token function">file</span> with <span class="token string">'kubectl -n kube-system \
+get cm kubeadm-config -o yaml'</span>
+<span class="token punctuation">[</span>preflight<span class="token punctuation">]</span> Running pre-flight checks
+<span class="token punctuation">[</span>preflight<span class="token punctuation">]</span> Skipping prepull. Not a control plane node.
+<span class="token punctuation">[</span>upgrade<span class="token punctuation">]</span> Skipping phase. Not a control plane node.
+<span class="token punctuation">[</span>kubelet-start<span class="token punctuation">]</span> Writing kubelet configuration to <span class="token function">file</span> <span class="token punctuation">\</span>
+<span class="token string">&quot;/var/lib/kubelet/config.yaml&quot;</span>
+<span class="token punctuation">[</span>upgrade<span class="token punctuation">]</span> The configuration <span class="token keyword">for</span> this <span class="token function">node</span> was successfully updated<span class="token operator">!</span>
+<span class="token punctuation">[</span>upgrade<span class="token punctuation">]</span> Now you should go ahead and upgrade the kubelet package using your <span class="token punctuation">\</span>
+package manager.
+
+</code></pre></div><ol start="4"><li>업그레이드할 노드를 drain한다.</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code>$ kubectl drain kube-worker-1 --ignore-daemonsets
+
+node/kube-worker-1 cordoned
+WARNING: ignoring DaemonSet-managed Pods: kube-system/calico-node-2hrxg, <span class="token punctuation">\</span>
+kube-system/kube-proxy-qf6nl
+evicting pod kube-system/calico-kube-controllers-65f8bc95db-kggbr
+evicting pod kube-system/coredns-f9fd979d6-7zm4q
+evicting pod kube-system/coredns-f9fd979d6-tlmhq
+pod/calico-kube-controllers-65f8bc95db-kggbr evicted
+pod/coredns-f9fd979d6-7zm4q evicted
+pod/coredns-f9fd979d6-tlmhq evicted
+node/kube-worker-1 evicted
+</code></pre></div><ol start="5"><li>kubelet과 kubectl을 업그레이드한다.</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code>$ <span class="token function">sudo</span> apt-mark unhold kubelet kubectl <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token function">apt-get</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token punctuation">\</span>
+<span class="token function">install</span> -y <span class="token assign-left variable">kubelet</span><span class="token operator">=</span><span class="token number">1.19</span>.0-00 <span class="token assign-left variable">kubectl</span><span class="token operator">=</span><span class="token number">1.19</span>.0-00 <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> apt-mark hold kubelet <span class="token punctuation">\</span>
+kubectl
+
+<span class="token punctuation">..</span>.
+Setting up kubelet <span class="token punctuation">(</span><span class="token number">1.19</span>.0-00<span class="token punctuation">)</span> <span class="token punctuation">..</span>.
+Setting up kubectl <span class="token punctuation">(</span><span class="token number">1.19</span>.0-00<span class="token punctuation">)</span> <span class="token punctuation">..</span>.
+kubelet <span class="token builtin class-name">set</span> on hold.
+kubectl <span class="token builtin class-name">set</span> on hold.
+</code></pre></div><ol start="6"><li>kubelet 프로세스를 재시작한다.</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code>$ <span class="token function">sudo</span> systemctl daemon-reload
+$ <span class="token function">sudo</span> systemctl restart kubelet
+</code></pre></div><ol start="7"><li>노드를 uncordon한다.</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code>$ kubectl uncordon kube-worker-1
+node/kube-worker-1 uncordoned
+</code></pre></div><ol start="8"><li>새로운 버전인 1.19.0가 노드에도 적용됐는지 확인한다.</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code>$ kubectl get nodes
+NAME                 STATUS   ROLES    AGE   VERSION
+kube-control-plane   Ready    master   24h   v1.19.0
+kube-worker-1        Ready    <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>   24h   v1.19.0
+</code></pre></div><ol start="9"><li>로그아웃</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code>$ <span class="token builtin class-name">exit</span>
+<span class="token builtin class-name">logout</span>
+<span class="token punctuation">..</span>.
+</code></pre></div></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/ithingv34/devops_stack/edit/main/src/ClusterArchitecture/3_Version_Upgrade.md" target="_blank" rel="noopener noreferrer">잘못된 부분이 있다면 수정해주세요🙌!</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">2/12/2023, 1:30:15 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/devops_stack/src/ClusterArchitecture/2_Cluster_Installation.html" class="prev">
+        클러스터 설치
+      </a></span> <span class="next"><a href="/devops_stack/src/ClusterArchitecture/4_Etcd_backup_Restoring.html">
+        etcd DB 백업 및 복원
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/devops_stack/assets/js/app.edb6ec7a.js" defer></script><script src="/devops_stack/assets/js/2.d7118089.js" defer></script><script src="/devops_stack/assets/js/11.901b1318.js" defer></script>
+  </body>
+</html>

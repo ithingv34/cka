@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>역할 기반 액세스 제어 (RBAC) |  Certified Kubernetes Administrator (CKA)</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/devops_stack/assets/css/0.styles.c4bf43de.css" as="style"><link rel="preload" href="/devops_stack/assets/js/app.edb6ec7a.js" as="script"><link rel="preload" href="/devops_stack/assets/js/2.d7118089.js" as="script"><link rel="preload" href="/devops_stack/assets/js/7.8923e0a1.js" as="script"><link rel="prefetch" href="/devops_stack/assets/js/10.6ef1ed52.js"><link rel="prefetch" href="/devops_stack/assets/js/11.901b1318.js"><link rel="prefetch" href="/devops_stack/assets/js/12.40f20e7b.js"><link rel="prefetch" href="/devops_stack/assets/js/13.c5675a20.js"><link rel="prefetch" href="/devops_stack/assets/js/14.fc4b9492.js"><link rel="prefetch" href="/devops_stack/assets/js/15.7274da97.js"><link rel="prefetch" href="/devops_stack/assets/js/16.ba253dca.js"><link rel="prefetch" href="/devops_stack/assets/js/17.8d7173ed.js"><link rel="prefetch" href="/devops_stack/assets/js/18.444f652b.js"><link rel="prefetch" href="/devops_stack/assets/js/19.5c40776e.js"><link rel="prefetch" href="/devops_stack/assets/js/20.971c14df.js"><link rel="prefetch" href="/devops_stack/assets/js/21.2f108077.js"><link rel="prefetch" href="/devops_stack/assets/js/22.df4926d3.js"><link rel="prefetch" href="/devops_stack/assets/js/23.06677d3c.js"><link rel="prefetch" href="/devops_stack/assets/js/24.8ce7d6e5.js"><link rel="prefetch" href="/devops_stack/assets/js/25.c6342015.js"><link rel="prefetch" href="/devops_stack/assets/js/26.3e22c156.js"><link rel="prefetch" href="/devops_stack/assets/js/27.304176ff.js"><link rel="prefetch" href="/devops_stack/assets/js/28.12ba7b33.js"><link rel="prefetch" href="/devops_stack/assets/js/29.61b2a492.js"><link rel="prefetch" href="/devops_stack/assets/js/3.cd70506a.js"><link rel="prefetch" href="/devops_stack/assets/js/30.af9f12b0.js"><link rel="prefetch" href="/devops_stack/assets/js/4.4d035bb6.js"><link rel="prefetch" href="/devops_stack/assets/js/5.ea5a5e54.js"><link rel="prefetch" href="/devops_stack/assets/js/6.44607573.js"><link rel="prefetch" href="/devops_stack/assets/js/8.d7d30e29.js"><link rel="prefetch" href="/devops_stack/assets/js/9.021f254a.js">
+    <link rel="stylesheet" href="/devops_stack/assets/css/0.styles.c4bf43de.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/devops_stack/" class="home-link router-link-active"><!----> <span class="site-name"> Certified Kubernetes Administrator (CKA)</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/devops_stack/" class="nav-link">
+  Home
+</a></div> <a href="https://github.com/ithingv34/devops_stack" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/devops_stack/" class="nav-link">
+  Home
+</a></div> <a href="https://github.com/ithingv34/devops_stack" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/devops_stack/" aria-current="page" class="sidebar-link">Certified Kubernetes Administrator (CKA)</a></li><li><section class="sidebar-group collapsable depth-0"><a href="/devops_stack/src/CKA/" class="sidebar-heading clickable"><span>CKA</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/devops_stack/src/ClusterArchitecture/" class="sidebar-heading clickable router-link-active open"><span>ClusterArchitecture</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/devops_stack/src/ClusterArchitecture/" aria-current="page" class="sidebar-link">클러스터 아키텍처, 설치 및 구성 [25%]</a></li><li><a href="/devops_stack/src/ClusterArchitecture/1_RBAC.html" aria-current="page" class="active sidebar-link">역할 기반 액세스 제어 (RBAC)</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/devops_stack/src/ClusterArchitecture/1_RBAC.html#rbac-이란" class="sidebar-link">RBAC 이란?</a></li><li class="sidebar-sub-header"><a href="/devops_stack/src/ClusterArchitecture/1_RBAC.html#serviceaccount" class="sidebar-link">ServiceAccount</a></li><li class="sidebar-sub-header"><a href="/devops_stack/src/ClusterArchitecture/1_RBAC.html#rbac-api" class="sidebar-link">RBAC API</a></li></ul></li><li><a href="/devops_stack/src/ClusterArchitecture/2_Cluster_Installation.html" class="sidebar-link">클러스터 설치</a></li><li><a href="/devops_stack/src/ClusterArchitecture/3_Version_Upgrade.html" class="sidebar-link">클러스터 버전 업그레이드</a></li><li><a href="/devops_stack/src/ClusterArchitecture/4_Etcd_backup_Restoring.html" class="sidebar-link">etcd DB 백업 및 복원</a></li><li><a href="/devops_stack/src/ClusterArchitecture/5_Cluster_HA.html" class="sidebar-link">클러스터 고가용성(HA) 관리</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/devops_stack/src/Workloads Scheduling/" class="sidebar-heading clickable"><span>Workloads Scheduling</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/devops_stack/src/Services Networking/" class="sidebar-heading clickable"><span>Services Networking</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/devops_stack/src/Storage/" class="sidebar-heading clickable"><span>Storage</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/devops_stack/src/TroubleShooting/" class="sidebar-heading clickable"><span>TroubleShooting</span> <span class="arrow right"></span></a> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="역할-기반-액세스-제어-rbac"><a href="#역할-기반-액세스-제어-rbac" class="header-anchor">#</a> 역할 기반 액세스 제어 (RBAC)</h1> <h2 id="rbac-이란"><a href="#rbac-이란" class="header-anchor">#</a> RBAC 이란?</h2> <p><strong>권한 관리</strong></p> <p>쿠버네티스에서는 Pod, Namespace 등의 API 리소스에 대한 요청을 허용하기 전에 인증을 받아야 한다. 우리가 인터넷 쇼핑몰에서 주문을 하기 위해서는 회원가입을 하고 로그인을 해야 하는 것과 마찬가지로 쿠버네티스 관리자는 사용자, 그룹등을 생성하고 그들에게 리소스를 읽고 쓸 수 있는 권한을 부여할 수 있다.</p> <p>쿠버네티스 관리자는 전체 액세스 권한을 가지고 특정 사용자에게는 역할에 따라 읽기 권한만 부여할 수 있다. 예를들어 애플리케이션 개발자는 클러스터 노드를 관리할 필요가 없기 때문에 단지 <code>read-only</code> 권한만 가져도 충분하다.</p> <p>이렇게 RBAC은 API 리소스 관리에 대한 액세스를 허용하거나 허용하지 않음으로써 <code>사용자</code>, <code>그룹</code> 및 <code>프로세스</code>에 대한 정책을 정의한다. 보안에 중점을 둔 클러스터의 경우 RBAC의 규칙을 정하는 것은 아주 중요하다.</p> <hr> <p><strong>RBAC의 목적</strong></p> <ul><li><p>다양한 역할을 가진 사용자가 쿠버네티스 리소스에 권한을 가지고 접근할 수 있는 시스템 구축</p></li> <li><p>Pod에서 실행되는 프로세스 및 쿠버네티스 API를 통해 수행할 수 있는 작업 제어</p></li> <li><p>네임스페이스 당 특정 리소스의 Visibility 제한</p></li></ul> <hr> <p><strong>RBAC의 핵심 요소</strong></p> <img src="/devops_stack/assets/img/1-5.e73a117c.png" style="margin-top:1rem;"> <ul><li><strong><code>Subject</code></strong> : 리소스를 사용하려는 사용자
+<ul><li>Users, Groups, ServiceAccounts</li></ul></li> <li><strong><code>API Resources</code></strong> : 쿠버네티스에서 제공하는 개체
+<ul><li>Pod, Node, Deployment, ConfigMap, Secret 등</li></ul></li> <li><strong><code>Operation</code></strong> : 리소스에 대한 동작 (CRUD)
+<ul><li>Create, List, Watch, Delete</li></ul></li></ul> <hr> <p><strong>Subject 유형</strong></p> <p>RBAC 컨텍스트에서 사용자, 그룹, 서비스계정을 주제로 사용할 수 있다.</p> <ul><li><code>사용자</code> 및 <code>그룹</code>은 쿠버네티스의 데이터베이스인 etcd에 저장되지는 않으며 클러스터 <strong>외부</strong>에서 실행되는 프로세스를 위한 것이다.</li> <li><code>서비스 계정</code>은 쿠버네티스에서 개체로 존재하며 클러스터 <strong>내부</strong>에서 실행되는 프로세스에서 사용된다.</li></ul> <hr> <p><strong>사용자 계정 및 그룹</strong></p> <ul><li><p>사용자는 관리자에 의해 관리되며 계정의 <strong>인증정보(Credential)</strong> 를 외부 사람이나 프로세스에 배포할 수 있다.</p></li> <li><p>사용자 계정의 경우 API 서버에 대한 호출시 <strong>인증</strong>이 필요하다. 쿠버네티스는 이러한 요청에 대해 다양한 인증 방법을 제공한다.</p></li></ul> <br> <table><thead><tr><th style="text-align:left;">인증 전략</th> <th style="text-align:left;">설명</th></tr></thead> <tbody><tr><td style="text-align:left;">X.509 client certificate</td> <td style="text-align:left;">OpenSSL 클라이언트 인증서를 사용하여 인증하기</td></tr> <tr><td style="text-align:left;">Basic Authentication</td> <td style="text-align:left;">사용자명과 패스워드를 사용하여 인증하기</td></tr> <tr><td style="text-align:left;">Bearer tokens</td> <td style="text-align:left;">Oauth2와 같은 OpenID나 Webhook을 통한 토큰 인증 방식</td></tr></tbody></table> <hr> <p><strong>OpenSSL 클라이언트 인증서를 사용하여 인증하기</strong></p> <ul><li>사용자 생성을 위해서 관리자 권한이 필요하다.</li> <li>시험에서는 이미 관련 설정이 되어있어서 사용자를 직접 생성할 필요가 없기 때문에 이 단계를 생략할 수 있다.</li></ul> <ol><li>쿠버네티스 ControlPlane 노드에 접속하고 생성된 키를 보관할 임시 디렉토리를 생성하고 이동한다.</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code>$ <span class="token function">mkdir</span> cert <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">cd</span> cert
+</code></pre></div><ol start="2"><li><a href="https://www.openssl.org/source/" target="_blank" rel="noopener noreferrer">openssl<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>을 사용하여 private key를 생성한다.</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code>$ openssl genrsa -out -out ithingv34.key <span class="token number">2048</span>
+Generating RSA private key, <span class="token number">2048</span> bit long modulus
+<span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>+
+<span class="token punctuation">..</span>+
+e is <span class="token number">65537</span> <span class="token punctuation">(</span>0x10001<span class="token punctuation">)</span>
+$ <span class="token function">ls</span>
+ithingv34.key
+</code></pre></div><ol start="3"><li>Certificate Sign Request(CSR) 생성하기
+<ul><li><code>-subj</code> 옵션에 <code>사용자명(CN)</code>, <code>그룹명(O)</code>을 붙임</li> <li>유저를 그룹에 할당하는 것을 막기 위해 <code>/O</code> 를 남긴다.</li></ul></li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code>$ openssl req -new -key ithingv34.key -out ithingv34.csr -subj <span class="token string">&quot;/CN=ithingv34/O=cka&quot;</span>
+$ <span class="token function">ls</span>
+ithingv34.csr ithingv34.key
+</code></pre></div><ol start="4"><li>Kubernetes cluster certificate authority(CA)로 CSR에 서명한다. CA는 보통 <code>/etc/kubernetes/pki</code>에 <code>ca.crt</code>, <code>ca.key</code> 파일이 저장되어 있다. minikube의 경우 다음처럼 입력하며 인증서는 364일간 유효하다.</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code>$ openssl x509 -req -in ithingv34.csr -CA /.minikube/ca.crt -CAkey <span class="token punctuation">\</span>
+   /.minikube/ca.key -CAcreateserial -out ithingv34.crt -days <span class="token number">364</span>
+Signature ok
+<span class="token assign-left variable">subject</span><span class="token operator">=</span>/CN<span class="token operator">=</span>ithingv34/O<span class="token operator">=</span>cka
+Getting CA Private Key
+</code></pre></div><ol start="5"><li><code>kubeconfig</code>에서 사용자 항목을 설정하여 쿠버네티스에서 사용자를 만든다.
+<ul><li>crt, key 파일을 지정해야한다.</li> <li>username에 대한 context를 지정해야한다.</li></ul></li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code>$ kubectl config set-credentials ithingv34 <span class="token punctuation">\</span>
+  --client-certificate<span class="token operator">=</span>ithingv34.crt --client-key<span class="token operator">=</span>ithingv34.key
+User <span class="token string">&quot;ithingv34&quot;</span> set.
+
+$ kubectl config set-context ithingv34-context --cluster<span class="token operator">=</span>minikube <span class="token punctuation">\</span>
+  --user<span class="token operator">=</span>ithingv34
+Context <span class="token string">&quot;ithingv34-context&quot;</span> modified.
+</code></pre></div><ol start="6"><li>사용자를 변경할 경우에는 <code>ithingv34-context</code>라는 컨텍스트를 사용하면 된다. 현재 사용중인 컨텍스트를 확인할 때는 <code>current-context</code>를 입력한다.</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code>$ kubectl config use-context ithingv34-context
+Switched to context <span class="token string">&quot;ithingv34-context&quot;</span><span class="token builtin class-name">.</span>
+
+$ kubectl config current-context
+ithingv34-context
+</code></pre></div><h2 id="serviceaccount"><a href="#serviceaccount" class="header-anchor">#</a> ServiceAccount</h2> <p>사용자는 <code>kubectl</code> 이나 UI 대시보드를 사용하여 클러스터와 상호작용할 수 있다. 그런데 Pod와 같은 쿠버네티스 객체 내부에서 실행되는 <a href="https://helm.sh/ko/" target="_blank" rel="noopener noreferrer">Helm<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>과 같은 일부 서비스 애플리케이션은 Restful HTTP 호출을 통해 API 서버에 요청을 함으로써 쿠버네티스 클러스와 상호작용한다.</p> <p>예를들어, Helm chart는 비즈니스 애플리케이션에 필요한 여러 쿠버네티스 객체를 정의한다. 쿠버네티스 <code>ServiceAccount</code> 를 사용하여 인증 토큰을 통해 API 서버와 함께 Helm 서비스 프로세스를 인증한다. 이 서비스 계정을 Pod에 할당하고 RBAC 규칙에 매핑할 수 있다.</p> <p>쿠버네티스 클러스터는 따로 지정하지 않는 경우 <code>default</code> 네임스페이스에 있는 <code>ServiceAccount</code>와 함께 제공된다.</p> <ul><li><strong>ServiceAccount 생성</strong></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code>$ kubectl create serviceaccount my-serviceacc
+serviceaccount/serviceacc created
+</code></pre></div><div class="language-markdown extra-class"><pre class="language-markdown"><code><span class="token title important"><span class="token punctuation">#</span> YAML Manifest</span>
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+    name: my-serviceacc
+</code></pre></div><ul><li><strong>ServiceAccount 목록</strong></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code>$ kubectl get serviceaccounts
+NAME            SECRETS   AGE
+my-serviceacc       <span class="token number">1</span>     78s
+default             <span class="token number">1</span>     93d
+</code></pre></div><ul><li><strong>ServiceAccount 세부정보</strong> <ul><li>ServiceAccount를 생성할 때 API 서버가 토큰을 보유하는 Secret을 생헝하고 이를 ServiceAccount에 할당한다.</li> <li>Secret 및 Token 이름은 ServiceAccount 이름을 접두어로 사용한다.</li></ul></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code>kubectl describe serviceaccount my-serviceacc
+Name:                my-serviceacc
+Namespace:           default
+Labels:              <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+Annotations:         <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+Image pull secrets:  <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+Mountable secrets:   my-serviceacc-token-rvjnz
+Tokens:              my-serviceacc-token-rvjnz
+Events:              <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+</code></pre></div><ul><li><strong>Secret 목록</strong></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code>$ kubectl get secrets
+NAME                        TYPE                                    DATA   AGE
+my-serviceacc-token-rvjnz   kubernetes.io/service-account-token     <span class="token number">3</span>      20m
+default-token-qgh5n         kubernetes.io/service-account-token     <span class="token number">3</span>      93d
+
+</code></pre></div><ul><li><strong>ServiceAccount를 Pod에 할당하기</strong> <ul><li>API를 호출하는 애플리케이션을 실행하는 Pod에 serviceaccount 를 할당할 수 있다.</li></ul></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code>$ kubectl run my-pod --image<span class="token operator">=</span>alpine --restart<span class="token operator">=</span>Never --serviceaccount<span class="token operator">=</span>my-serviceacc
+pod/my-pod created
+</code></pre></div><div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># YAML Manifest</span>
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  serviceAccountName: my-serviceacc
+</code></pre></div><h2 id="rbac-api"><a href="#rbac-api" class="header-anchor">#</a> RBAC API</h2> <img src="/devops_stack/assets/img/1-6.0b85d981.png" style="margin-top:1rem;"> <p><strong>Role</strong></p> <ul><li>Role은 쿠버네티스 리소스에 대한 권한들을 명시해둔 규칙들의 <strong>집합</strong>이다.</li> <li><code>Role</code>과 <code>ClusterRole</code> 2가지 종류가 있다.</li> <li>Role은 그 <strong>Role이 속한 네임스페이스 한 곳</strong>에만 적용된다.</li> <li><code>ClusterRole</code>은 특정 네임스페이스에 대한 권한이 아닌 <strong>클러스터 전체에 대한 권한</strong>을 관리한다.</li> <li>네임스페이스에 한정되지 않는 자원 및 API들에 대한 권한을 지정할 수도 있다. ex) 특정 노드 혹은 엔드포인트에 대한 권한</li></ul> <p><strong>RoleBinding</strong></p> <ul><li>RoleBinding은 Role과 사용자를 묶어주는 역할을 한다.</li> <li>마찬가지로 RoleBinding은 특정 네임스페이스 한 곳에 적용되며 ClusterRoleBinding은 클러스터 전체에 걸쳐 적용된다.</li></ul> <hr> <ul><li><p><strong>Role 생성하기</strong></p> <ul><li><code>--verb</code> : 가능한 작업을 명시한다.</li></ul> <table><thead><tr><th style="text-align:left;">verb</th> <th style="text-align:left;">의미</th></tr></thead> <tbody><tr><td style="text-align:left;">create</td> <td style="text-align:left;">새로운 리소스 생성</td></tr> <tr><td style="text-align:left;">get</td> <td style="text-align:left;">개별 리소스 조회</td></tr> <tr><td style="text-align:left;">list</td> <td style="text-align:left;">여러건의 리소스 조회</td></tr> <tr><td style="text-align:left;">update</td> <td style="text-align:left;">기존 리소스내용 전체 업데이트</td></tr> <tr><td style="text-align:left;">patch</td> <td style="text-align:left;">기존 리소스중 일부 내용 변경</td></tr> <tr><td style="text-align:left;">delete</td> <td style="text-align:left;">개별 리소스 삭제</td></tr> <tr><td style="text-align:left;">deletecollection</td> <td style="text-align:left;">여러 리소스 삭제</td></tr></tbody></table> <ul><li><code>--resource</code> :  API 리소스의 목록을 정의한다.</li> <li>리소스 목록을 제공하지 않으면 모든 리소스 유형에 적용된다.</li> <li>예시는 <code>read-only</code>라는 역할명을 가지고 pods, deployments, services 리소스에 <code>list</code>, <code>get</code>, <code>watch</code> 작업이 가능한 역할이다.</li></ul></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code>$ kubectl create role read-only --verb<span class="token operator">=</span>list,get,watch <span class="token punctuation">\</span>
+  --resource<span class="token operator">=</span>pods,deployments,services
+
+role.rbac.authorization.k8s.io/read-only created
+</code></pre></div><div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># YAML manifest</span>
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: read-only
+rules:
+- apiGroups:
+  - <span class="token string">&quot;&quot;</span>
+  resources:
+  - pods
+  - services
+  verbs:
+  - list
+  - get
+  - <span class="token function">watch</span>
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  verbs:
+  - list
+  - get
+  - <span class="token function">watch</span>
+
+</code></pre></div><ul><li><strong>Role 목록</strong></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code>$ kubectl get roles
+NAME        CREATED AT
+read-only   <span class="token number">2022</span>-12-21T19:46:48Z
+</code></pre></div><ul><li><strong>Role 세부내용</strong> <ul><li>리소스를 허용하는 동사에 매핑하는 테이블을 렌더링한다.</li> <li>이 클러스터에는 생성된 리소스가 없으므로 리소스 이름 목록이 비어있다.</li></ul></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code>Name:         read-only
+Labels:       <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+Annotations:  <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+PolicyRule:
+  Resources         Non-Resource URLs  Resource Names  Verbs
+  ---------         -----------------  --------------  -----
+  pods              <span class="token punctuation">[</span><span class="token punctuation">]</span>                 <span class="token punctuation">[</span><span class="token punctuation">]</span>              <span class="token punctuation">[</span>list get watch<span class="token punctuation">]</span>
+  services          <span class="token punctuation">[</span><span class="token punctuation">]</span>                 <span class="token punctuation">[</span><span class="token punctuation">]</span>              <span class="token punctuation">[</span>list get watch<span class="token punctuation">]</span>
+  deployments.apps  <span class="token punctuation">[</span><span class="token punctuation">]</span>                 <span class="token punctuation">[</span><span class="token punctuation">]</span>              <span class="token punctuation">[</span>list get watch<span class="token punctuation">]</span>
+</code></pre></div><hr> <ul><li><p><strong>RoleBinding 생성</strong></p> <ul><li>Role을 RoleBinding에 묶으려면 <code>--role</code> 옵션을 사용한다.</li> <li><code>--user</code>, <code>--group</code>, <code>--serviceaccount</code>에 옵션에 원하는 사용자명을 입력할 수 있다.</li></ul></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code>kubectl create rolebinding read-only-binding --role<span class="token operator">=</span>read-only --user<span class="token operator">=</span>ithingv34
+rolebinding.rbac.authorization.k8s.io/read-only-binding created
+</code></pre></div><div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment"># YAML Manifest</span>
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: read-only-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: read-only
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: ithingv34
+</code></pre></div><ul><li><strong>RoleBinding 목록</strong></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code>$ kubectl get rolebindings
+NAME                ROLE             AGE
+read-only-binding   Role/read-only   24h
+</code></pre></div><ul><li><strong>RoleBinding 세부내용</strong></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code>$ kubectl describe rolebinding read-only-binding
+Name:         read-only-binding
+Labels:       <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+Annotations:  <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>
+Role:
+  Kind:  Role
+  Name:  read-only
+Subjects:
+  Kind  Name     Namespace
+  ----  ----     ---------
+  User  ithingv34
+</code></pre></div><ul><li><strong>ClusterRole, ClusterRoleBinding 생성</strong></li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code>$ kubectl create clusterrole read-only-role --verb<span class="token operator">=</span>list,get,watch <span class="token punctuation">\</span> --resource<span class="token operator">=</span>pods,deployments,services
+clusterrole.rbac.authorization.k8s.io/read-only-role created
+
+
+$ kubectl create clusterrolebinding read-only-role-binding --clusterrole<span class="token operator">=</span>read-only-role --user<span class="token operator">=</span>ithingv34
+clusterrolebinding.rbac.authorization.k8s.io/read-only-role-binding created
+</code></pre></div><hr> <p><strong>실제로 RBAC 규칙 적용해보기</strong></p> <ul><li>현재 컨텍스트는 <code>minikube</code></li> <li>nginx 이미지를 myapp이라는 이름으로 80번 포트에 2개의 replica를 가지는 pod를 배포</li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code>$ kubectl config current-context
+minikube
+
+$ kubectl create deployment myapp --image<span class="token operator">=</span>nginx --port<span class="token operator">=</span><span class="token number">80</span> --replicas<span class="token operator">=</span><span class="token number">2</span>
+deployment.apps/myapp created
+</code></pre></div><ol><li>유저(ithingv34) 컨텍스트로 전환하기</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code>$ kubectl config use-context ithingv34-context
+Switched to context <span class="token string">&quot;ithingv34-context&quot;</span><span class="token builtin class-name">.</span>
+</code></pre></div><ol start="2"><li>배포된 deployments 확인하기
+<ul><li>유저 ithingv34는 deployment 리소스에 대해 list 작업이 가능한 상태</li></ul></li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code>$ kubectl get deployments
+NAME    READY   UP-TO-DATE   AVAILABLE   AGE
+myapp   <span class="token number">2</span>/2     <span class="token number">2</span>            <span class="token number">2</span>           8s
+</code></pre></div><ol start="3"><li>유저가 가진 권한들을 확인하는 명령어 (<code>auth can-i</code>)</li></ol> <div class="language-shell extra-class"><pre class="language-shell"><code>$ kubectl auth can-i --list --as ithingv34
+Resources          Non-Resource URLs   Resource Names   Verbs
+<span class="token punctuation">..</span>.
+pods               <span class="token punctuation">[</span><span class="token punctuation">]</span>                  <span class="token punctuation">[</span><span class="token punctuation">]</span>               <span class="token punctuation">[</span>list get watch<span class="token punctuation">]</span>
+services           <span class="token punctuation">[</span><span class="token punctuation">]</span>                  <span class="token punctuation">[</span><span class="token punctuation">]</span>               <span class="token punctuation">[</span>list get watch<span class="token punctuation">]</span>
+deployments.apps   <span class="token punctuation">[</span><span class="token punctuation">]</span>                  <span class="token punctuation">[</span><span class="token punctuation">]</span>               <span class="token punctuation">[</span>list get watch<span class="token punctuation">]</span>
+$ kubectl auth can-i list pods --as ithingv34
+<span class="token function">yes</span>
+</code></pre></div><hr></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/ithingv34/devops_stack/edit/main/src/ClusterArchitecture/1_RBAC.md" target="_blank" rel="noopener noreferrer">잘못된 부분이 있다면 수정해주세요🙌!</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">2/12/2023, 1:30:15 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/devops_stack/src/ClusterArchitecture/" class="prev router-link-active">
+        클러스터 아키텍처, 설치 및 구성 [25%]
+      </a></span> <span class="next"><a href="/devops_stack/src/ClusterArchitecture/2_Cluster_Installation.html">
+        클러스터 설치
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/devops_stack/assets/js/app.edb6ec7a.js" defer></script><script src="/devops_stack/assets/js/2.d7118089.js" defer></script><script src="/devops_stack/assets/js/7.8923e0a1.js" defer></script>
+  </body>
+</html>
