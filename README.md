@@ -1,4 +1,4 @@
-# Certified Kubernetes Administrator(CKA) Study Guide
+# Cka summary
  
 https://ithingv34.github.io/devops_stack/
 Aws
